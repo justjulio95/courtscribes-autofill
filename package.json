@@ -1,0 +1,24 @@
+{
+  "name": "courtscribes-autofill",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justjulio95/courtscribes-autofill.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/justjulio95/courtscribes-autofill/issues"
+  },
+  "homepage": "https://github.com/justjulio95/courtscribes-autofill#readme",
+  "dependencies": {
+    "inquirer": "^9.0.0"
+  }
+}
