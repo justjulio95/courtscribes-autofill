@@ -38,10 +38,9 @@ const promptReporter = () => {
       choices: ['Hearing', 'Deposition', 'EUO']
     },
     {
-      type: 'list',
+      type: 'confirm',
       name: 'video',
-      message: 'Is this a video job?',
-      choices: ['Yes', 'No']
+      message: 'Is this a video job?'
     },
     {
       type: 'list',
@@ -86,10 +85,107 @@ const promptReporter = () => {
       }
     },
     {
+      type: 'input',
+      name: 'plaintiffName',
+      message: 'Plaintiff Attorneys Name: ',
+      validate: reqPlainName => {
+        if (reqPlainName)return true
+      }
+    },
+    {
+      type: 'input',
+      name: 'plaintiffLawFirm',
+      message: 'Plaintiff Law Firm (if info is available): '
+    },
+    {
+      type: 'input',
+      name: 'plaintiffAddress',
+      message: 'Address: ',
+      validate: reqAddress => {
+        if (reqAddress) return true
+      }
+    },
+    {
+      type: 'input',
+      name: 'plaintiffNumber',
+      message: 'Telephone Number: ',
+      validate: reqPlainNum => {
+        if (reqPlainNum) return true
+      }
+    },
+    {
+      type: 'input',
+      name: 'plaintiffEmail',
+      message: "Plaintiff's email: ",
+      validate: reqEmail => {
+        if (reqEmail) return true
+      }
+    },
+    {
+      type: 'input',
+      name: 'defenseName',
+      message: 'Defense Attorneys Name: ',
+      validate: reqPlainName => {
+        if (reqPlainName)return true
+      }
+    },
+    {
+      type: 'input',
+      name: 'defenseLawFirm',
+      message: 'Defense Law Firm (if info is available): '
+    },
+    {
+      type: 'input',
+      name: 'defenseAddress',
+      message: 'Address: ',
+      validate: reqAddress => {
+        if (reqAddress) return true
+      }
+    },
+    {
+      type: 'input',
+      name: 'defenseNumber',
+      message: 'Telephone Number: ',
+      validate: reqPlainNum => {
+        if (reqPlainNum) return true
+      }
+    },
+    {
+      type: 'input',
+      name: 'defenseEmail',
+      message: "Defense's email: ",
+      validate: reqEmail => {
+        if (reqEmail) return true
+      }
+    },
+    {
       type: 'list',
-      name: 'plaintiffAtt',
-      message: 'Do you have the plaintiff attorneys information?',
-      choices: ['Yes', 'No']
+      name: 'readWaive',
+      message: 'Will the witness read or waive? (N/A if HEARING) ',
+      choices: ['Yes', 'No', 'N/A']
+    },
+    {
+      type: 'input',
+      name: 'contactRead',
+      message: 'Contact email: (if READ) ',
+    },
+    {
+      type: 'input',
+      name: 'directExam',
+      message: 'Who did direct examination? ',
+      validate: reqDirEx => {
+        if (reqDirEx) return true
+      }
+    },
+    {
+      type: 'input',
+      name: 'crossExam',
+      message: 'Who did cross examination? ',
+    },
+    {
+      type: 'input',
+      name: 'reDirect',
+      message: 'Who did re-direct examination? ',
     }
   ])
 }
