@@ -257,7 +257,8 @@ const promptReporter = () => {
     {
       type: 'confirm',
       name: 'exhibitsSent',
-      message: 'Are the exhibits being sent?'
+      message: 'Are the exhibits being sent?',
+      when: (answers) => answers.jobType !== 'Hearing'
     },
     {
       type: 'input',
