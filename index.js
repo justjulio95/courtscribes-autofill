@@ -1,8 +1,10 @@
 import inquirer from "inquirer";
 import fs from "fs"
 const log = console.log;
+// throughout this code the WHEN function will be used to filter out some unnecessary questions.
 
 const promptReporter = () => {
+  // a slew of initial questions for the forms that need to be filled out. 
   return inquirer.prompt([
     {
       type: 'input',
@@ -40,7 +42,8 @@ const promptReporter = () => {
     {
       type: 'confirm',
       name: 'video',
-      message: 'Is this a video job?'
+      message: 'Is this a video job?',
+      when: (answers) => answers.jobType !== 'Hearing'
     },
     {
       type: 'list',
@@ -85,9 +88,15 @@ const promptReporter = () => {
       }
     },
     {
+      type: 'confirm',
+      name: 'plaintiffInfo',
+      message: "Do you have the plaintiff attorneys information?"
+    },
+    {
       type: 'input',
       name: 'plaintiffName',
       message: 'Plaintiff Attorneys Name: ',
+      when: (answers) => answers.plaintiffInfo === true,
       validate: reqPlainName => {
         if (reqPlainName)return true
       }
@@ -95,12 +104,14 @@ const promptReporter = () => {
     {
       type: 'input',
       name: 'plaintiffLawFirm',
-      message: 'Plaintiff Law Firm (if info is available): '
+      message: 'Plaintiff Law Firm (if info is available): ',
+      when: (answers) => answers.plaintiffInfo === true,
     },
     {
       type: 'input',
       name: 'plaintiffAddress',
       message: 'Address: ',
+      when: (answers) => answers.plaintiffInfo === true,
       validate: reqAddress => {
         if (reqAddress) return true
       }
@@ -109,6 +120,7 @@ const promptReporter = () => {
       type: 'input',
       name: 'plaintiffNumber',
       message: 'Telephone Number: ',
+      when: (answers) => answers.plaintiffInfo === true,
       validate: reqPlainNum => {
         if (reqPlainNum) return true
       }
@@ -117,6 +129,7 @@ const promptReporter = () => {
       type: 'input',
       name: 'plaintiffEmail',
       message: "Plaintiff's email: ",
+      when: (answers) => answers.plaintiffInfo === true,
       validate: reqEmail => {
         if (reqEmail) return true
       }
@@ -162,17 +175,20 @@ const promptReporter = () => {
       type: 'list',
       name: 'readWaive',
       message: 'Will the witness read or waive? (N/A if HEARING) ',
-      choices: ['Yes', 'No', 'N/A']
+      choices: ['Yes', 'No', 'N/A'],
+      when: (answers) => answers.jobType !== 'Hearing'
     },
     {
       type: 'input',
       name: 'contactRead',
       message: 'Contact email: (if READ) ',
+      when: (answers) => answers.jobType !== 'Hearing'
     },
     {
       type: 'input',
       name: 'directExam',
       message: 'Who did direct examination? ',
+      when: (answers) => answers.jobType !== 'Hearing',
       validate: reqDirEx => {
         if (reqDirEx) return true
       }
@@ -181,52 +197,62 @@ const promptReporter = () => {
       type: 'input',
       name: 'crossExam',
       message: 'Who did cross examination? ',
+      when: (answers) => answers.jobType !== 'Hearing'
     },
     {
       type: 'input',
       name: 'reDirect',
       message: 'Who did re-direct examination? ',
+      when: (answers) => answers.jobType !== 'Hearing'
     },
     {
       type: 'confirm',
       name: 'certQuestions',
-      message: 'Are there certified questions?'
+      message: 'Are there certified questions?',
+      when: (answers) => answers.jobType !== 'Hearing'
     },
     {
       type: 'confirm',
       name: 'transOrdered',
-      message: 'Was the transcript ordered?'
+      message: 'Was the transcript ordered?',
+      when: (answers) => answers.jobType !== 'Hearing'
     },
     {
       type: 'input',
       name: 'orderTime',
       message: 'Order on the record timestamp: ',
+      when: (answers) => answers.jobType !== 'Hearing' && answers.transOrdered === true
     },
     {
       type: 'input',
       name: 'originalOrder',
-      message: 'Who ordered the original?'
+      message: 'Who ordered the original?',
+      when: (answers) => answers.jobType !== 'Hearing' && answers.transOrdered === true
     },
     {
       type: 'list',
       name: 'deliverySpeed',
       message: 'Delivery Speed?',
-      choices: ['Regular (7-10 business days', 'Expedited (3 business days', 'Daily (next business day)']
+      choices: ['Regular (7-10 business days', 'Expedited (3 business days', 'Daily (next business day)'],
+      when: (answers) => answers.jobType !== 'Hearing' && answers.transOrdered === true
     },
     {
       type: 'input',
       name: 'copyOrder',
-      message: 'Who ordered the copy?'
+      message: 'Who ordered the copy?',
+      when: (answers) => answers.jobType !== 'Hearing' && answers.transOrdered === true
     },
     {
       type: 'confirm',
-      name: 'videoOrder',
-      message: 'Was the video ordered?'
+      name: 'videoOrdered',
+      message: 'Was the video ordered?',
+      when: (answers) => answers.jobType !== 'Hearing'
     },
     {
       type: 'input',
       name: 'videoAttny',
-      message: 'Who ordered the video? '
+      message: 'Who ordered the video? ',
+      when: (answers) => answers.jobType !== 'Hearing' && answers.videoOrdered === true
     },
     {
       type: 'confirm',
@@ -236,7 +262,8 @@ const promptReporter = () => {
     {
       type: 'input',
       name: 'retainAttny',
-      message: 'Name of the attorney retaining exhibits: '
+      message: 'Name of the attorney retaining exhibits: ',
+      when: (answers) => answers.exhibitsSent === false
     }
   ])
 }
