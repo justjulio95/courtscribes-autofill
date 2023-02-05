@@ -186,8 +186,62 @@ const promptReporter = () => {
       type: 'input',
       name: 'reDirect',
       message: 'Who did re-direct examination? ',
+    },
+    {
+      type: 'confirm',
+      name: 'certQuestions',
+      message: 'Are there certified questions?'
+    },
+    {
+      type: 'confirm',
+      name: 'transOrdered',
+      message: 'Was the transcript ordered?'
+    },
+    {
+      type: 'input',
+      name: 'orderTime',
+      message: 'Order on the record timestamp: ',
+    },
+    {
+      type: 'input',
+      name: 'originalOrder',
+      message: 'Who ordered the original?'
+    },
+    {
+      type: 'list',
+      name: 'deliverySpeed',
+      message: 'Delivery Speed?',
+      choices: ['Regular (7-10 business days', 'Expedited (3 business days', 'Daily (next business day)']
+    },
+    {
+      type: 'input',
+      name: 'copyOrder',
+      message: 'Who ordered the copy?'
+    },
+    {
+      type: 'confirm',
+      name: 'videoOrder',
+      message: 'Was the video ordered?'
+    },
+    {
+      type: 'input',
+      name: 'videoAttny',
+      message: 'Who ordered the video? '
+    },
+    {
+      type: 'confirm',
+      name: 'exhibitsSent',
+      message: 'Are the exhibits being sent?'
+    },
+    {
+      type: 'input',
+      name: 'retainAttny',
+      message: 'Name of the attorney retaining exhibits: '
     }
   ])
 }
 
-promptReporter();
+promptReporter()
+.then(data => {
+  log(data)
+})
