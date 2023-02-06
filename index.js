@@ -1,5 +1,6 @@
-import inquirer from "inquirer";
-import fs from "fs"
+import inquirer from 'inquirer';
+import fs from 'fs'
+import generateTxt from './utils/generateTxt.js';
 const log = console.log;
 // throughout this code the WHEN function will be used to filter out some unnecessary questions.
 
@@ -67,6 +68,14 @@ const promptReporter = () => {
       validate: reqCaseName => {
         if (reqCaseName) return true;
         log('\nPlease provide the case name')
+      }
+    },
+    {
+      type: 'input',
+      name: 'caseNumber',
+      message: 'Case number: ',
+      validate: reqCaseNum => {
+        if (reqCaseNum) return true
       }
     },
     {
@@ -270,6 +279,13 @@ const promptReporter = () => {
 }
 
 promptReporter()
+.then(courtScribesData => {
+  // feeds the data from the users input into the generateTxt file to begin creating the .txt file. 
+  return generateTxt(courtScribesData)
+})
 .then(data => {
-  log(data)
+  // fs.writeFile(`./${data.courtScribesData.jobNumber}`, data, err => {
+  //   if (err) throw Error(err)
+  //})
+  log(data);
 })
