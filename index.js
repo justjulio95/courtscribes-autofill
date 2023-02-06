@@ -264,7 +264,7 @@ const promptReporter = () => {
       type: 'input',
       name: 'retainAttny',
       message: 'Name of the attorney retaining exhibits: ',
-      when: (answers) => answers.exhibitsSent === false
+      when: (answers) => answers.jobType !== 'Hearing' && answers.exhibitsSent === false
     }
   ])
 }
