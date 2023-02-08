@@ -1,8 +1,30 @@
+function renderPlaintiffInfo(plaintiffInfo, plaintiffName, plaintiffLawFirm, plaintiffAddress,
+  plaintiffNumber, plaintiffEmail) {
+
+  if (plaintiffInfo === true) {
+    return `PLAINTIFF ATTORNEY
+ATTORNEY NAME: ${plaintiffName}
+LAW FIRM: ${plaintiffLawFirm}
+LAW FIRM ADDRESS: ${plaintiffAddress}
+TELEPHONE NUMBER: ${plaintiffNumber}
+EMAIL: ${plaintiffEmail}
+REPRESENTING: (IF MORE THAN ONE PLAINTIFF)`
+  }
+  else {
+    return `PLAINTIFF ATTORNEY
+ATTORNEY NAME: 
+LAW FIRM: 
+LAW FIRM ADDRESS: 
+TELEPHONE NUMBER: 
+EMAIL: 
+REPRESENTING: (IF MORE THAN ONE PLAINTIFF)`
+  }
+}
+
 const generateTxt = courtScribesData => {
   // destructure the object for the sake of simplicity in coding
   const {jobNumber, date, scheduledTime, jobType, video, idCheck, witness, caseName,
-  caseNumber, onTime, offTime, /*plaintiffInfo,*/ plaintiffName, plaintiffLawFirm, plaintiffAddress,
-  plaintiffNumber, plaintiffEmail, defenseName, defenseLawFirm, defenseAddress, 
+  caseNumber, onTime, offTime, plaintiffInfo, defenseName, defenseLawFirm, defenseAddress, 
   defenseNumber, defenseEmail, readWaive, contactRead, directExam, crossExam, reDirect,
   certQuestions, transOrdered, orderTime, originalOrder, deliverySpeed, copyOrder, 
   videoOrdered, videoAttny, exhibitsSent, retainAttny} = courtScribesData;
@@ -43,13 +65,7 @@ APPEARANCES (COPY/PASTE FOR ADDITIONAL ATTORNEYS)
 
 THE FOLLOWING SECTION MUST BE FILLED OUT COMPLETELY:
 
-PLAINTIFF ATTORNEY
-ATTORNEY NAME: ${plaintiffName}
-LAW FIRM: ${plaintiffLawFirm}
-LAW FIRM ADDRESS: ${plaintiffAddress}
-TELEPHONE NUMBER: ${plaintiffNumber}
-EMAIL: ${plaintiffEmail}
-REPRESENTING: (IF MORE THAN ONE PLAINTIFF)
+${renderPlaintiffInfo(plaintiffInfo)}
 
 DEFENSE ATTORNEY
 ATTORNEY NAME: ${defenseName}

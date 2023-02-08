@@ -1,6 +1,7 @@
 import inquirer from 'inquirer';
 import fs from 'fs'
 import generateTxt from './utils/generateTxt.js';
+const exhibList = [];
 const log = console.log;
 // throughout this code the WHEN function will be used to filter out some unnecessary questions.
 
@@ -184,14 +185,14 @@ const promptReporter = () => {
       type: 'list',
       name: 'readWaive',
       message: 'Will the witness read or waive? (N/A if HEARING) ',
-      choices: ['Yes', 'No', 'N/A'],
+      choices: ['Read', 'Waive', 'N/A'],
       when: (answers) => answers.jobType !== 'Hearing'
     },
     {
       type: 'input',
       name: 'contactRead',
       message: 'Contact email: (if READ) ',
-      when: (answers) => answers.jobType !== 'Hearing'
+      when: (answers) => answers.jobType !== 'Hearing' && answers.readWaive === 'Read'
     },
     {
       type: 'input',
@@ -278,14 +279,21 @@ const promptReporter = () => {
   ])
 }
 
+const exhibitsList = () => {
+  inquirer.prompt([
+    {
+
+    }
+  ])
+}
+
 promptReporter()
 .then(courtScribesData => {
-  // feeds the data from the users input into the generateTxt file to begin creating the .txt file. 
+  // feeds the data from the users input into the generateTxt file to begin creating the .txt file.
   return generateTxt(courtScribesData)
 })
 .then(data => {
-  // fs.writeFile(`./${data.courtScribesData.jobNumber}`, data, err => {
-  //   if (err) throw Error(err)
-  //})
-  log(data);
+   fs.writeFile(`./notepad.txt`, data, err => {
+     if (err) throw Error(err)
+  })
 })
