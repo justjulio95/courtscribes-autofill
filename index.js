@@ -1,13 +1,21 @@
 import inquirer from 'inquirer';
 import fs from 'fs'
 import generateTxt from './utils/generateTxt.js';
-const exhibList = [];
 const log = console.log;
 // throughout this code the WHEN function will be used to filter out some unnecessary questions.
 
 const promptReporter = () => {
   // a slew of initial questions for the forms that need to be filled out. 
   return inquirer.prompt([
+    {
+      type: 'input',
+      name: 'reporterName',
+      message: 'Enter your name: ',
+      validate: reqName => {
+        if (reqName) return true;
+        log('\nPlease provide your name')
+      }
+    },
     {
       type: 'input',
       name: 'jobNumber',
@@ -148,8 +156,9 @@ const promptReporter = () => {
       type: 'input',
       name: 'defenseName',
       message: 'Defense Attorneys Name: ',
-      validate: reqPlainName => {
-        if (reqPlainName)return true
+      validate: reqDefName => {
+        if (reqDefName)return true;
+        log('\nPlease provide the defense attorneys name.')
       }
     },
     {
@@ -162,15 +171,17 @@ const promptReporter = () => {
       name: 'defenseAddress',
       message: 'Address: ',
       validate: reqAddress => {
-        if (reqAddress) return true
+        if (reqAddress) return true;
+        log('\nPlease provide the address')
       }
     },
     {
       type: 'input',
       name: 'defenseNumber',
       message: 'Telephone Number: ',
-      validate: reqPlainNum => {
-        if (reqPlainNum) return true
+      validate: reqDefNum => {
+        if (reqDefNum) return true
+        log('\nPlease provide the phone number')
       }
     },
     {
@@ -266,9 +277,21 @@ const promptReporter = () => {
     },
     {
       type: 'confirm',
+      name: 'confirmExhibits',
+      message: 'Were there any exhibits?',
+      when: (answers) => answers.jobType !== 'Hearing'
+    },
+    {
+      type: 'input',
+      name: 'exhibitsList',
+      message: 'Please provide all the exhibits separated by a comma (EXAMPLE: Exhibit 1, Exhibit 2, ..., Exhibit 5): ',
+      when: (answers) => answers.confirmExhibits === true
+    },
+    {
+      type: 'confirm',
       name: 'exhibitsSent',
       message: 'Are the exhibits being sent?',
-      when: (answers) => answers.jobType !== 'Hearing'
+      when: (answers) => answers.jobType !== 'Hearing' && answers.confirmExhibits === true
     },
     {
       type: 'input',
@@ -279,21 +302,16 @@ const promptReporter = () => {
   ])
 }
 
-const exhibitsList = () => {
-  inquirer.prompt([
-    {
-
-    }
-  ])
-}
-
 promptReporter()
 .then(courtScribesData => {
-  // feeds the data from the users input into the generateTxt file to begin creating the .txt file.
-  return generateTxt(courtScribesData)
+  log(courtScribesData)
 })
-.then(data => {
-   fs.writeFile(`./notepad.txt`, data, err => {
-     if (err) throw Error(err)
-  })
-})
+// .then(courtScribesData => {
+//   // feeds the data from the users input into the generateTxt file to begin creating the .txt file.
+//   return generateTxt(courtScribesData)
+// })
+// .then(data => {
+//    fs.writeFile(`./notepad.txt`, data, err => {
+//      if (err) throw Error(err)
+//   })
+// })
