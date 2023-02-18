@@ -1,0 +1,85 @@
+CS JOB #: 1
+DATE: 1
+SCHEDULED TIME: 1
+JOB TYPE: Deposition
+VIDEO JOB: false
+ID CHECKED: No
+
+WINTESS NAME (or JUDGE'S NAME if hearing): 12
+CASE NAME: 1
+CASE #: 1
+*****************************************************************************************************************
+undefined
+
+
+EXHIBIT LIST: 
+(running list of marked exhibits w/# or letter and short description. Differentiate plaintiff or defense if both are used)
+
+
+
+
+CORRECT SPELLINGS:
+(any proper names that might be difficult to spell or find online. Ask at end of depo for clarifications)
+
+
+
+
+NOTES: 
+(ANY AND ALL ISSUES THAT WE SHOULD BE AWARE OF, i.e. TECHNICAL ISSUES, ATTORNEY/WITNESS ISSUES)
+
+
+
+ON/OFF RECORD TIMES: (MUST HAVE AT LEAST START AND END OF JOB. IT IS HELPFUL TO HAVE FULL LIST)
+ON: 1
+OFF: 1
+
+APPEARANCES (COPY/PASTE FOR ADDITIONAL ATTORNEYS)
+
+THE FOLLOWING SECTION MUST BE FILLED OUT COMPLETELY:
+
+PLAINTIFF ATTORNEY
+ATTORNEY NAME: 
+LAW FIRM: 
+LAW FIRM ADDRESS: 
+TELEPHONE NUMBER: 
+EMAIL: 
+REPRESENTING: (IF MORE THAN ONE PLAINTIFF)
+
+DEFENSE ATTORNEY
+ATTORNEY NAME: n
+LAW FIRM: n
+LAW FIRM ADDRESS: n
+TELEPHONE NUMBER: n
+EMAIL: n
+REPRESENTING: (IF MORE THAN ONE DEFENDANT)
+
+ANYONE ELSE THAT WAS PRESENT 
+(MUST GET ALL NAMES UNLESS IT IS A CALENDAR HEARING WHERE OTHER PEOPLE ARE PRESENT FOR MULTIPLE HEARINGS)
+
+
+*******************************************************************************************************************
+READ OR WAIVE: Read
+CONTACT EMAIL (IF READ): n
+
+EXAMINATIONS:
+DIRECT EXAMINATION: n
+CROSS EXAMINATION: n
+RE-DIRECT EXAMINATION: n
+RE-CROSS EXAMINATION: (ATTORNEY NAME)
+(add more if questioning goes further)
+
+CERTIFIED QUESTIONS?: false
+
+TRANSCRIPT ORDER: false
+IF ORDERED: 
+ORDER ON THE RECORD TIMESTAMP: undefined
+WHO ORDERED ORIGINAL? (O+1): undefined
+DELIVERY SPEED: undefined
+COPY ORDER(S): undefined
+
+VIDEO ORDER: false - undefined
+ORDER NOTES: (i.e. requests for physical copies or cost quotes)
+
+IF EXHIBITS WERE MARKED (MUST HAVE EXHIBIT LIST IN NOTES SECTION):
+ARE THE EXHIBITS BEING SENT TO TRANSCRIPTS@COURTSCIBES.COM? false
+IF NOT, ATTORNEY NAME OF WHO RETAINED EXHIBITS: n

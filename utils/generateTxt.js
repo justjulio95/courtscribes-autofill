@@ -21,13 +21,37 @@ REPRESENTING: (IF MORE THAN ONE PLAINTIFF)`
   }
 }
 
+function renderExhibitsList(confirmExhibits, exhibitsList) {
+  if (confirmExhibits === true) {
+    let list = exhibitsList;
+    console.log(list);
+//     const trueList = exhibitsList.toString().split(',')
+
+//     for(i = 0; i < trueList.length - 1; i++) {
+//       let singleExhibits = trueList[i].trim()
+//       return `EXHIBIT LIST: 
+// (running list of marked exhibits w/# or letter and short description. Differentiate plaintiff or defense if both are used)
+// ${singleExhibits}`
+//     }
+  }
+//   } else {
+//     return `EXHIBIT LIST: 
+// (running list of marked exhibits w/# or letter and short description. Differentiate plaintiff or defense if both are used)
+
+
+
+
+// `
+//   }
+}
+
 const generateTxt = courtScribesData => {
   // destructure the object for the sake of simplicity in coding
   const {jobNumber, date, scheduledTime, jobType, video, idCheck, witness, caseName,
   caseNumber, onTime, offTime, plaintiffInfo, defenseName, defenseLawFirm, defenseAddress, 
   defenseNumber, defenseEmail, readWaive, contactRead, directExam, crossExam, reDirect,
   certQuestions, transOrdered, orderTime, originalOrder, deliverySpeed, copyOrder, 
-  videoOrdered, videoAttny, exhibitsSent, retainAttny} = courtScribesData;
+  videoOrdered, videoAttny, confirmExhibits, exhibitsSent, retainAttny} = courtScribesData;
 
   return `CS JOB #: ${jobNumber}
 DATE: ${date}
@@ -40,6 +64,9 @@ WINTESS NAME (or JUDGE'S NAME if hearing): ${witness}
 CASE NAME: ${caseName}
 CASE #: ${caseNumber}
 *****************************************************************************************************************
+${renderExhibitsList(confirmExhibits)}
+
+
 EXHIBIT LIST: 
 (running list of marked exhibits w/# or letter and short description. Differentiate plaintiff or defense if both are used)
 

@@ -304,7 +304,7 @@ const promptReporter = () => {
 
 promptReporter()
 .then(courtScribesData => {
-  log(courtScribesData)
+  log(typeof courtScribesData.exhibitsList)
 })
 // .then(courtScribesData => {
 //   // feeds the data from the users input into the generateTxt file to begin creating the .txt file.
