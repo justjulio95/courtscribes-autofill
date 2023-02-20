@@ -21,37 +21,27 @@ REPRESENTING: (IF MORE THAN ONE PLAINTIFF)`
   }
 }
 
-function renderExhibitsList(confirmExhibits, exhibitsList) {
+function renderExhibitsList(confirmExhibits, exhibits) {
   if (confirmExhibits === true) {
-    let list = exhibitsList;
-    console.log(list);
-//     const trueList = exhibitsList.toString().split(',')
-
-//     for(i = 0; i < trueList.length - 1; i++) {
-//       let singleExhibits = trueList[i].trim()
-//       return `EXHIBIT LIST: 
-// (running list of marked exhibits w/# or letter and short description. Differentiate plaintiff or defense if both are used)
-// ${singleExhibits}`
-//     }
+    let exhibitsList = exhibits.split(',').map(function(item){
+      return item.trim();
+    })
+    // for (let i = 0; i < exhibitsList.length; i++){
+   
+      // console.log(exhibitsList[i])
+      // console.log(exhibitsList.indexOf(exhibitsList[i]) + 1)   
+    //}
   }
-//   } else {
-//     return `EXHIBIT LIST: 
-// (running list of marked exhibits w/# or letter and short description. Differentiate plaintiff or defense if both are used)
-
-
-
-
-// `
-//   }
 }
 
-const generateTxt = courtScribesData => {
+const generateTxtFile = courtScribesData => {
   // destructure the object for the sake of simplicity in coding
   const {jobNumber, date, scheduledTime, jobType, video, idCheck, witness, caseName,
-  caseNumber, onTime, offTime, plaintiffInfo, defenseName, defenseLawFirm, defenseAddress, 
+  caseNumber, onTime, offTime, plaintiffInfo, plaintiffName, plaintiffLawFirm, plaintiffAddress,
+  plaintiffNumber, plaintiffEmail, defenseName, defenseLawFirm, defenseAddress, 
   defenseNumber, defenseEmail, readWaive, contactRead, directExam, crossExam, reDirect,
   certQuestions, transOrdered, orderTime, originalOrder, deliverySpeed, copyOrder, 
-  videoOrdered, videoAttny, confirmExhibits, exhibitsSent, retainAttny} = courtScribesData;
+  videoOrdered, videoAttny, confirmExhibits, exhibits, exhibitsSent, retainAttny} = courtScribesData;
 
   return `CS JOB #: ${jobNumber}
 DATE: ${date}
@@ -60,16 +50,13 @@ JOB TYPE: ${jobType}
 VIDEO JOB: ${video}
 ID CHECKED: ${idCheck}
 
-WINTESS NAME (or JUDGE'S NAME if hearing): ${witness}
+WITNESS NAME (or JUDGE'S NAME if hearing): ${witness}
 CASE NAME: ${caseName}
 CASE #: ${caseNumber}
 *****************************************************************************************************************
-${renderExhibitsList(confirmExhibits)}
-
-
 EXHIBIT LIST: 
 (running list of marked exhibits w/# or letter and short description. Differentiate plaintiff or defense if both are used)
-
+${renderExhibitsList(confirmExhibits, exhibits)}
 
 
 
@@ -92,7 +79,8 @@ APPEARANCES (COPY/PASTE FOR ADDITIONAL ATTORNEYS)
 
 THE FOLLOWING SECTION MUST BE FILLED OUT COMPLETELY:
 
-${renderPlaintiffInfo(plaintiffInfo)}
+${renderPlaintiffInfo(plaintiffInfo, plaintiffName, plaintiffLawFirm, plaintiffAddress,
+  plaintiffNumber, plaintiffEmail)}
 
 DEFENSE ATTORNEY
 ATTORNEY NAME: ${defenseName}
@@ -134,4 +122,4 @@ ARE THE EXHIBITS BEING SENT TO TRANSCRIPTS@COURTSCIBES.COM? ${exhibitsSent}
 IF NOT, ATTORNEY NAME OF WHO RETAINED EXHIBITS: ${retainAttny}`
 }
 
-export default generateTxt
+export default generateTxtFile

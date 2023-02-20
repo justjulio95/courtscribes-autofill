@@ -19,6 +19,6 @@
   },
   "homepage": "https://github.com/justjulio95/courtscribes-autofill#readme",
   "dependencies": {
-    "inquirer": "^9.0.0"
+    "inquirer": "^8.2.5"
   }
 }
