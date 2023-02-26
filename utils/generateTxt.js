@@ -26,11 +26,13 @@ function renderExhibitsList(confirmExhibits, exhibits) {
     let exhibitsList = exhibits.split(',').map(function(item){
       return item.trim();
     })
-    // for (let i = 0; i < exhibitsList.length; i++){
-   
-      // console.log(exhibitsList[i])
-      // console.log(exhibitsList.indexOf(exhibitsList[i]) + 1)   
-    //}
+    let tradList = '';
+
+    for (let i = 0; i <= exhibitsList.length - 1; i++) {
+      tradList += (i+1) + ' - ' + exhibitsList[i] + '\n';
+    }
+
+    return `${tradList}`
   }
 }
 
@@ -57,7 +59,6 @@ CASE #: ${caseNumber}
 EXHIBIT LIST: 
 (running list of marked exhibits w/# or letter and short description. Differentiate plaintiff or defense if both are used)
 ${renderExhibitsList(confirmExhibits, exhibits)}
-
 
 
 CORRECT SPELLINGS:
