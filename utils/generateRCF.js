@@ -1,21 +1,44 @@
 import docx from 'docx';
 import * as fs from 'fs';
 
+function renderExhibitsList(confirmExhibits, exhibits) {
+  if (confirmExhibits === true) {
+    let exhibitsList = exhibits.split(',').map(function(item){
+      return item.trim();
+    })
+    let tradList = '';
+
+    for (let i = 0; i <= exhibitsList.length - 1; i++) {
+      tradList += (i+1) + ' - ' + exhibitsList[i] + '\t';
+    }
+
+    return `${tradList}`
+  }
+}
+
 // use the docx package to develop the RCF file
 const generateRCF = courtScribesData => {
   // destructure the object for the sake of simplicity in coding
-  const {reporterName, jobNumber, date, scheduledTime, jobType, video, idCheck, witness, caseName,
-  caseNumber, onTime, offTime, plaintiffInfo, plaintiffName, plaintiffLawFirm, plaintiffAddress,
-  plaintiffNumber, plaintiffEmail, defenseName, defenseLawFirm, defenseAddress, 
-  defenseNumber, defenseEmail, readWaive, contactRead, directExam, crossExam, reDirect,
-  certQuestions, transOrdered, orderTime, originalOrder, deliverySpeed, copyOrder, 
-  videoOrdered, videoAttny, confirmExhibits, exhibits, exhibitsSent, retainAttny} = courtScribesData;
+  const {reporterName, jobNumber, date, witness, caseName, caseNumber, onTime, offTime,
+  readWaive, transOrdered, originalOrder, deliverySpeed, videoOrdered, confirmExhibits, 
+  exhibits, exhibitsSent} = courtScribesData;
 
   let doc = new docx.Document({
     sections: [
       {
         properties: {},
         children: [
+          new docx.Paragraph({
+            children: [
+              new docx.ImageRun({
+                data: fs.readFileSync('utils/images/CSHeader.jpeg'),
+                transformation: {
+                  width: 200,
+                  height: 100
+                }
+              })
+            ]
+          }),
           new docx.Paragraph({
             children: [
               new docx.TextRun({
@@ -197,6 +220,83 @@ const generateRCF = courtScribesData => {
                 size: 24,
                 font: 'Calibri'
               })
+            ]
+          }),
+          new docx.Paragraph({
+            children:[
+              new docx.TextRun({
+                text: `EXHIBITS: ${renderExhibitsList(confirmExhibits, exhibits)}`,
+                color: 'FF0000',
+                bold: true,
+                size: 24,
+                font: 'Calibri'
+              })
+            ]
+          }),
+          new docx.Paragraph({
+            children:[
+              new docx.TextRun({
+                text: `EXHIBITS BEING SENT TO TRANSCRIPTS@COURTSCRIBES.COM: ${exhibitsSent}`,
+                color: 'FF0000',
+                bold: true,
+                size: 24,
+                font: 'Calibri'
+              })
+            ]
+          }),
+          new docx.Paragraph({
+            children:[
+              new docx.TextRun({
+                text: `TRANSCRIPT(S) ORDERED: ${transOrdered}`,
+                color: '00AA00',
+                bold: true,
+                size: 24,
+                font: 'Calibri'
+              }),
+            ]
+          }),
+          new docx.Paragraph({
+            children:[
+              new docx.TextRun({
+                text: `DELIVERY SPEED: ${deliverySpeed}`,
+                color: '00AA00',
+                bold: true,
+                size: 24,
+                font: 'Calibri'
+              }),
+            ]
+          }),
+          new docx.Paragraph({
+            children:[
+              new docx.TextRun({
+                text: `VIDEO ORDERED: ${videoOrdered}`,
+                color: '00AA00',
+                bold: true,
+                size: 24,
+                font: 'Calibri'
+              }),
+            ]
+          }),
+          new docx.Paragraph({
+            children:[
+              new docx.TextRun({
+                text: `NAMES OF ATTORNEY(S) WHO ORDERED: ${originalOrder}`,
+                color: '00AA00',
+                bold: true,
+                size: 24,
+                font: 'Calibri'
+              }),
+            ]
+          }),
+          new docx.Paragraph({
+            children:[
+              new docx.TextRun({
+                text: `INCLUDE ANY ISSUES THAT OPERATIONS SHOULD KNOW (CONTINUE ON SECOND PAGE): `,
+                color: '000000',
+                bold: true,
+                size: 24,
+                font: 'Calibri'
+              }),
             ]
           }),
         ]
