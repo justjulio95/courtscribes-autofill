@@ -1,6 +1,7 @@
 import inquirer from 'inquirer';
 import fs from 'fs'
 import generateTxtFile from './utils/generateTxt.js';
+import generateRCF from './utils/generateRCF.js'
 const log = console.log;
 // throughout this code the WHEN function will be used to filter out some unnecessary questions.
 
@@ -342,10 +343,11 @@ promptReporter()
 // })
 .then(courtScribesData => {
   // feeds the data from the users input into the generateTxt file to begin creating the .txt file.
-  return generateTxtFile(courtScribesData);
+  // return generateTxtFile(courtScribesData);
+  return generateRCF(courtScribesData);
 })
-.then(data => {
-   fs.writeFile(`./notepad.txt`, data, err => {
-     if (err) throw Error(err)
-  })
-})
+// .then(data => {
+//    fs.writeFile(`./notepad.txt`, data, err => {
+//      if (err) throw Error(err)
+//   })
+// })

@@ -11,10 +11,9 @@ CASE #: ABC11345
 *****************************************************************************************************************
 EXHIBIT LIST: 
 (running list of marked exhibits w/# or letter and short description. Differentiate plaintiff or defense if both are used)
-1ix1
-2ix2
-3ix3
-
+1 - x1
+2 - x2
+3 - x3
 
 
 
