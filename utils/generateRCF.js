@@ -33,20 +33,32 @@ const generateRCF = courtScribesData => {
               new docx.ImageRun({
                 data: fs.readFileSync('utils/images/CSHeader.jpeg'),
                 transformation: {
-                  width: 200,
+                  width: 300,
                   height: 100
+                },
+                floating: {
+                  horizontalPosition: {
+                    align: docx.HorizontalPositionAlign.CENTER
+                  },
+                  verticalPosition: {
+                    relative: docx.VerticalPositionRelativeFrom.TOP,
+                    align: docx.VerticalPositionAlign.TOP
+                  }
                 }
               })
             ]
           }),
           new docx.Paragraph({
+            alignment: docx.AlignmentType.CENTER,
             children: [
               new docx.TextRun({
                 text: 'REPORTER COMPLETION FORM',
                 color: '000000',
                 bold: true,
                 size: 36,
-                font: 'Calibri' 
+                font: 'Calibri',
+                floating: {
+                }
               }),
             ]
           }),
@@ -297,6 +309,26 @@ const generateRCF = courtScribesData => {
                 size: 24,
                 font: 'Calibri'
               }),
+            ]
+          }),
+          new docx.Paragraph({
+            children: [
+              new docx.ImageRun({
+                data: fs.readFileSync('utils/images/CSHeader.jpeg'),
+                transformation: {
+                  width: 300,
+                  height: 100
+                },
+                floating: {
+                  horizontalPosition: {
+                    align: docx.HorizontalPositionAlign.CENTER
+                  },
+                  verticalPosition: {
+                    relative: docx.VerticalPositionRelativeFrom.BOTTOM_MARGIN,
+                    align: docx.VerticalPositionAlign.BOTTOM
+                  }
+                }
+              })
             ]
           }),
         ]
