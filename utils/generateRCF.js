@@ -50,6 +50,9 @@ const generateRCF = courtScribesData => {
           }),
           new docx.Paragraph({
             alignment: docx.AlignmentType.CENTER,
+            spacing: {
+              after: 500
+            },
             children: [
               new docx.TextRun({
                 text: 'REPORTER COMPLETION FORM',
@@ -63,6 +66,9 @@ const generateRCF = courtScribesData => {
             ]
           }),
           new docx.Paragraph({
+            spacing: {
+              after: 300
+            },
             children: [
               new docx.TextRun({
                 text: `DATE: ${date}`,
@@ -81,6 +87,9 @@ const generateRCF = courtScribesData => {
             ]
           }),
           new docx.Paragraph({
+            spacing: {
+              after: 300
+            },
             children:[
               new docx.TextRun({
                 text: `JOB NUMBER: ${jobNumber}`,
@@ -92,6 +101,9 @@ const generateRCF = courtScribesData => {
             ]
           }),
           new docx.Paragraph({
+            spacing: {
+              after: 300
+            },
             children:[
               new docx.TextRun({
                 text: `CASE CAPTION/CASE #: ${caseNumber}`,
@@ -103,6 +115,9 @@ const generateRCF = courtScribesData => {
             ]
           }),
           new docx.Paragraph({
+            spacing: {
+              after: 300
+            },
             children:[
               new docx.TextRun({
                 text: `WITNESS/CASE NAME: ${witness}/${caseName}`,
@@ -114,6 +129,9 @@ const generateRCF = courtScribesData => {
             ]
           }),
           new docx.Paragraph({
+            spacing: {
+              after: 300
+            },
             children:[
               new docx.TextRun({
                 text: `ON THE RECORD TIME: ${onTime}`,
@@ -125,6 +143,9 @@ const generateRCF = courtScribesData => {
             ]
           }),
           new docx.Paragraph({
+            spacing: {
+              after: 300
+            },
             children:[
               new docx.TextRun({
                 text: `OFF THE RECORD TIME: ${offTime}`,
@@ -136,6 +157,9 @@ const generateRCF = courtScribesData => {
             ]
           }),
           new docx.Paragraph({
+            spacing: {
+              after: 300
+            },
             children:[
               new docx.TextRun({
                 text: `READ or WAIVE: ${readWaive}`,
@@ -147,6 +171,9 @@ const generateRCF = courtScribesData => {
             ]
           }),
           new docx.Paragraph({
+            spacing: {
+              after: 300
+            },
             children:[
               new docx.TextRun({
                 text: `WITNESS #2: `,
@@ -158,6 +185,9 @@ const generateRCF = courtScribesData => {
             ]
           }),
           new docx.Paragraph({
+            spacing: {
+              after: 300
+            },
             children:[
               new docx.TextRun({
                 text: `ON THE RECORD TIME: `,
@@ -169,6 +199,9 @@ const generateRCF = courtScribesData => {
             ]
           }),
           new docx.Paragraph({
+            spacing: {
+              after: 300
+            },
             children:[
               new docx.TextRun({
                 text: `OFF THE RECORD TIME: `,
@@ -180,6 +213,9 @@ const generateRCF = courtScribesData => {
             ]
           }),
           new docx.Paragraph({
+            spacing: {
+              after: 300
+            },
             children:[
               new docx.TextRun({
                 text: `READ or WAIVE: ${readWaive}`,
@@ -191,6 +227,9 @@ const generateRCF = courtScribesData => {
             ]
           }),
           new docx.Paragraph({
+            spacing: {
+              after: 300
+            },
             children:[
               new docx.TextRun({
                 text: `WITNESS #3: `,
@@ -202,6 +241,9 @@ const generateRCF = courtScribesData => {
             ]
           }),
           new docx.Paragraph({
+            spacing: {
+              after: 300
+            },
             children:[
               new docx.TextRun({
                 text: `ON THE RECORD TIME: `,
@@ -213,6 +255,9 @@ const generateRCF = courtScribesData => {
             ]
           }),
           new docx.Paragraph({
+            spacing: {
+              after: 300
+            },
             children:[
               new docx.TextRun({
                 text: `OFF THE RECORD TIME: `,
@@ -224,6 +269,9 @@ const generateRCF = courtScribesData => {
             ]
           }),
           new docx.Paragraph({
+            spacing: {
+              after: 300
+            },
             children:[
               new docx.TextRun({
                 text: `READ or WAIVE: ${readWaive}`,
@@ -235,6 +283,9 @@ const generateRCF = courtScribesData => {
             ]
           }),
           new docx.Paragraph({
+            spacing: {
+              after: 300
+            },
             children:[
               new docx.TextRun({
                 text: `EXHIBITS: ${renderExhibitsList(confirmExhibits, exhibits)}`,
@@ -246,6 +297,9 @@ const generateRCF = courtScribesData => {
             ]
           }),
           new docx.Paragraph({
+            spacing: {
+              after: 300
+            },
             children:[
               new docx.TextRun({
                 text: `EXHIBITS BEING SENT TO TRANSCRIPTS@COURTSCRIBES.COM: ${exhibitsSent}`,
@@ -257,6 +311,9 @@ const generateRCF = courtScribesData => {
             ]
           }),
           new docx.Paragraph({
+            spacing: {
+              after: 300
+            },
             children:[
               new docx.TextRun({
                 text: `TRANSCRIPT(S) ORDERED: ${transOrdered}`,
@@ -268,6 +325,9 @@ const generateRCF = courtScribesData => {
             ]
           }),
           new docx.Paragraph({
+            spacing: {
+              after: 300
+            },
             children:[
               new docx.TextRun({
                 text: `DELIVERY SPEED: ${deliverySpeed}`,
@@ -279,6 +339,9 @@ const generateRCF = courtScribesData => {
             ]
           }),
           new docx.Paragraph({
+            spacing: {
+              after: 300
+            },
             children:[
               new docx.TextRun({
                 text: `VIDEO ORDERED: ${videoOrdered}`,
@@ -290,6 +353,9 @@ const generateRCF = courtScribesData => {
             ]
           }),
           new docx.Paragraph({
+            spacing: {
+              after: 300
+            },
             children:[
               new docx.TextRun({
                 text: `NAMES OF ATTORNEY(S) WHO ORDERED: ${originalOrder}`,
@@ -301,6 +367,9 @@ const generateRCF = courtScribesData => {
             ]
           }),
           new docx.Paragraph({
+            spacing: {
+              after: 300
+            },
             children:[
               new docx.TextRun({
                 text: `INCLUDE ANY ISSUES THAT OPERATIONS SHOULD KNOW (CONTINUE ON SECOND PAGE): `,
