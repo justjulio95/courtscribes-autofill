@@ -337,14 +337,9 @@ const promptReporter = () => {
 }
 
 promptReporter()
-// .then(courtScribesData => {
-//   log(courtScribesData.confirmExhibits);
-//   log(courtScribesData.exhibits)
-// })
 .then(courtScribesData => {
   // feeds the data from the users input into the generateTxt file to begin creating the .txt file.
-  // return generateTxtFile(courtScribesData);
-  return generateRCF(courtScribesData);
+  return generateTranscriptOrder(courtScribesData);
 })
 // .then(data => {
 //    fs.writeFile(`./notepad.txt`, data, err => {
