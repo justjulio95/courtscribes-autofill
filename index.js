@@ -16,7 +16,6 @@ const promptReporter = () => {
         if (reqName) return true;
         log('\nPlease provide your name')
       },
-      default: "Julio"
     },
     {
       type: 'input',
@@ -26,7 +25,6 @@ const promptReporter = () => {
         if (reqNum) return true;
         log('\nPlease provide a job number')
       },
-      default: '12345'
     },
     {
       type: 'input',
@@ -36,7 +34,6 @@ const promptReporter = () => {
         if (reqDate) return true;
         log('\nPlease provide the date');
       },
-      default: 'TODAY' 
     },
     {
       type: 'input',
@@ -46,28 +43,24 @@ const promptReporter = () => {
         if (reqTime) return true;
         log('\nPlease provide the scheduled time.')
       },
-      default: 'NOW'
     },
     {
       type: 'list',
       name: 'jobType',
       message: 'Job Type: ',
       choices: ['Hearing', 'Deposition', 'EUO'],
-      default: 'EUO'
     },
     {
-      type: 'confirm',
+      type: 'list',
       name: 'video',
       message: 'Is this a video job?',
-      when: (answers) => answers.jobType !== 'Hearing',
-      default: false
+      choices: ['Yes', 'No'],
     },
     {
       type: 'list',
       name: 'idCheck',
       message: 'Have you checked the ID of the witness? (Select N/A if this is a HEARING)',
       choices: ['Yes', 'No', 'N/A'],
-      default: 'No'
     },
     {
       type: 'input',
@@ -77,7 +70,6 @@ const promptReporter = () => {
         if (reqWit) return true;
         log('\nPlease provide a name for the witness/Judge')
       },
-      default: 'Some Guy'
     },
     {
       type: 'input',
@@ -87,7 +79,6 @@ const promptReporter = () => {
         if (reqCaseName) return true;
         log('\nPlease provide the case name')
       },
-      default: 'A v. B'
     },
     {
       type: 'input',
@@ -96,7 +87,6 @@ const promptReporter = () => {
       validate: reqCaseNum => {
         if (reqCaseNum) return true
       },
-      default: 'ABC11345'
     },
     {
       type: 'input',
@@ -106,7 +96,6 @@ const promptReporter = () => {
         if (reqOnTime) return true;
         log('\nPlease provide the on the record time.')
       },
-      default: 'NOW'
     },
     {
       type: 'input',
@@ -116,13 +105,11 @@ const promptReporter = () => {
         if (reqOffTime) return true;
         log('\nPlease provide the off the record time.')
       },
-      default: 'LATER'
     },
     {
       type: 'confirm',
       name: 'plaintiffInfo',
       message: "Do you have the plaintiff attorneys information?",
-      default: true
     },
     {
       type: 'input',
@@ -132,14 +119,12 @@ const promptReporter = () => {
       validate: reqPlainName => {
         if (reqPlainName)return true
       },
-      default: 'Jessica'
     },
     {
       type: 'input',
       name: 'plaintiffLawFirm',
       message: 'Plaintiff Law Firm (if info is available): ',
       when: (answers) => answers.plaintiffInfo === true,
-      default: 'Bass LLC'
     },
     {
       type: 'input',
@@ -149,7 +134,6 @@ const promptReporter = () => {
       validate: reqAddress => {
         if (reqAddress) return true
       },
-      default: 'IGWIECVKWEC'
     },
     {
       type: 'input',
@@ -159,7 +143,6 @@ const promptReporter = () => {
       validate: reqPlainNum => {
         if (reqPlainNum) return true
       },
-      default: "3051234567"
     },
     {
       type: 'input',
@@ -169,7 +152,6 @@ const promptReporter = () => {
       validate: reqEmail => {
         if (reqEmail) return true
       },
-      default: 'test@test.com'
     },
     {
       type: 'input',
@@ -179,13 +161,11 @@ const promptReporter = () => {
         if (reqDefName)return true;
         log('\nPlease provide the defense attorneys name.')
       },
-      default: 'Roberto'
     },
     {
       type: 'input',
       name: 'defenseLawFirm',
       message: 'Defense Law Firm (if info is available): ',
-      default: 'Lopez LLC'
     },
     {
       type: 'input',
@@ -195,7 +175,6 @@ const promptReporter = () => {
         if (reqAddress) return true;
         log('\nPlease provide the address')
       },
-      default: 'ibiucbevr'
     },
     {
       type: 'input',
@@ -205,7 +184,6 @@ const promptReporter = () => {
         if (reqDefNum) return true
         log('\nPlease provide the phone number')
       },
-      default: '7861234567'
     },
     {
       type: 'input',
@@ -214,7 +192,6 @@ const promptReporter = () => {
       validate: reqEmail => {
         if (reqEmail) return true
       },
-      default: 'bull@wait.com'
     },
     {
       type: 'list',
@@ -222,7 +199,6 @@ const promptReporter = () => {
       message: 'Will the witness read or waive? (N/A if HEARING) ',
       choices: ['Read', 'Waive', 'N/A'],
       when: (answers) => answers.jobType !== 'Hearing',
-      default: 'Waive'
     },
     {
       type: 'input',
@@ -238,35 +214,30 @@ const promptReporter = () => {
       validate: reqDirEx => {
         if (reqDirEx) return true
       },
-      default: 'Roberto'
     },
     {
       type: 'input',
       name: 'crossExam',
       message: 'Who did cross examination? ',
       when: (answers) => answers.jobType !== 'Hearing',
-      default: 'meh'
     },
     {
       type: 'input',
       name: 'reDirect',
       message: 'Who did re-direct examination? ',
       when: (answers) => answers.jobType !== 'Hearing',
-      default: 'roberto'
     },
     {
       type: 'confirm',
       name: 'certQuestions',
       message: 'Are there certified questions?',
       when: (answers) => answers.jobType !== 'Hearing',
-      default: false
     },
     {
       type: 'confirm',
       name: 'transOrdered',
       message: 'Was the transcript ordered?',
       when: (answers) => answers.jobType !== 'Hearing',
-      default: false
     },
     {
       type: 'input',
@@ -298,7 +269,6 @@ const promptReporter = () => {
       name: 'videoOrdered',
       message: 'Was the video ordered?',
       when: (answers) => answers.jobType !== 'Hearing',
-      default: 'false'
     },
     {
       type: 'input',
@@ -311,21 +281,19 @@ const promptReporter = () => {
       name: 'confirmExhibits',
       message: 'Were there any exhibits?',
       when: (answers) => answers.jobType !== 'Hearing',
-      default: true
+      
     },
     {
       type: 'input',
       name: 'exhibits',
       message: 'Please provide all the exhibits separated by a comma (EXAMPLE: Exhibit 1, Exhibit 2, ..., Exhibit 5): ',
       when: (answers) => answers.confirmExhibits === true,
-      default: 'x1,     x2,                     x3'
     },
     {
       type: 'confirm',
       name: 'exhibitsSent',
       message: 'Are the exhibits being sent?',
       when: (answers) => answers.jobType !== 'Hearing' && answers.confirmExhibits === true,
-      default: true
     },
     {
       type: 'input',
@@ -339,10 +307,11 @@ const promptReporter = () => {
 promptReporter()
 .then(courtScribesData => {
   // feeds the data from the users input into the generateTxt file to begin creating the .txt file.
-  return generateTranscriptOrder(courtScribesData);
+  generateRCF(courtScribesData);
+  return generateTxtFile(courtScribesData);
 })
-// .then(data => {
-//    fs.writeFile(`./notepad.txt`, data, err => {
-//      if (err) throw Error(err)
-//   })
-// })
+.then(data => {
+   fs.writeFile(`./notepad.txt`, data, err => {
+     if (err) throw Error(err)
+  })
+})
