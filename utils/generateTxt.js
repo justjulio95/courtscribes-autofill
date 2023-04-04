@@ -36,6 +36,80 @@ function renderExhibitsList(confirmExhibits, exhibits) {
   }
 }
 
+function renderProperInfo(jobType, jobNumber, date, scheduledTime, video, idCheck) {
+  if (jobType === 'Hearing') {
+    return `CS JOB #: ${jobNumber}
+DATE: ${date}
+SCHEDULED TIME: ${scheduledTime}
+JOB TYPE: ${jobType}
+VIDEO JOB: NO
+ID CHECKED: N/A` 
+  }
+  return `CS JOB #: ${jobNumber}
+DATE: ${date}
+SCHEDULED TIME: ${scheduledTime}
+JOB TYPE: ${jobType}
+VIDEO JOB: ${video}
+ID CHECKED: ${idCheck}`
+}
+
+function renderReadWaive(jobType, readWaive, contactRead, directExam, crossExam, 
+reDirect, certQuestions, transOrdered, orderTime, originalOrder, deliverySpeed, 
+copyOrder, videoOrdered, videoAttny, exhibitsSent, retainAttny) {
+  if (jobType === 'Hearing') {
+    return `READ OR WAIVE: N/A
+CONTACT EMAIL (IF READ): N/A
+
+EXAMINATIONS:
+DIRECT EXAMINATION: N/A
+CROSS EXAMINATION: N/A
+RE-DIRECT EXAMINATION: N/A
+RE-CROSS EXAMINATION: N/A
+(add more if questioning goes further)
+  
+CERTIFIED QUESTIONS?: N/A
+  
+TRANSCRIPT ORDER: N/A
+IF ORDERED: 
+ORDER ON THE RECORD TIMESTAMP: N/A
+WHO ORDERED ORIGINAL? (O+1): N/A
+DELIVERY SPEED: N/A
+COPY ORDER(S): N/A
+
+VIDEO ORDER: N/A
+ORDER NOTES: (i.e. requests for physical copies or cost quotes)
+
+IF EXHIBITS WERE MARKED (MUST HAVE EXHIBIT LIST IN NOTES SECTION):
+ARE THE EXHIBITS BEING SENT TO TRANSCRIPTS@COURTSCIBES.COM? N/A
+IF NOT, ATTORNEY NAME OF WHO RETAINED EXHIBITS: N/A`
+    }
+    return `READ OR WAIVE: ${readWaive}
+CONTACT EMAIL (IF READ): ${contactRead}
+
+EXAMINATIONS:
+DIRECT EXAMINATION: ${directExam}
+CROSS EXAMINATION: ${crossExam}
+RE-DIRECT EXAMINATION: ${reDirect}
+RE-CROSS EXAMINATION: (ATTORNEY NAME)
+(add more if questioning goes further)
+
+CERTIFIED QUESTIONS?: ${certQuestions}
+
+TRANSCRIPT ORDER: ${transOrdered}
+IF ORDERED: 
+ORDER ON THE RECORD TIMESTAMP: ${orderTime}
+WHO ORDERED ORIGINAL? (O+1): ${originalOrder}
+DELIVERY SPEED: ${deliverySpeed}
+COPY ORDER(S): ${copyOrder}
+
+VIDEO ORDER: ${videoOrdered} - ${videoAttny}
+ORDER NOTES: (i.e. requests for physical copies or cost quotes)
+
+IF EXHIBITS WERE MARKED (MUST HAVE EXHIBIT LIST IN NOTES SECTION):
+ARE THE EXHIBITS BEING SENT TO TRANSCRIPTS@COURTSCIBES.COM? ${exhibitsSent}
+IF NOT, ATTORNEY NAME OF WHO RETAINED EXHIBITS: ${retainAttny}`
+}
+
 const generateTxtFile = courtScribesData => {
   // destructure the object for the sake of simplicity in coding
   const {jobNumber, date, scheduledTime, jobType, video, idCheck, witness, caseName,
@@ -45,12 +119,7 @@ const generateTxtFile = courtScribesData => {
   certQuestions, transOrdered, orderTime, originalOrder, deliverySpeed, copyOrder, 
   videoOrdered, videoAttny, confirmExhibits, exhibits, exhibitsSent, retainAttny} = courtScribesData;
 
-  return `CS JOB #: ${jobNumber}
-DATE: ${date}
-SCHEDULED TIME: ${scheduledTime}
-JOB TYPE: ${jobType}
-VIDEO JOB: ${video}
-ID CHECKED: ${idCheck}
+  return `${renderProperInfo(jobType, jobNumber, date, scheduledTime, video, idCheck)}
 
 WITNESS NAME (or JUDGE'S NAME if hearing): ${witness}
 CASE NAME: ${caseName}
@@ -96,31 +165,10 @@ ANYONE ELSE THAT WAS PRESENT
 
 
 *******************************************************************************************************************
-READ OR WAIVE: ${readWaive}
-CONTACT EMAIL (IF READ): ${contactRead}
-
-EXAMINATIONS:
-DIRECT EXAMINATION: ${directExam}
-CROSS EXAMINATION: ${crossExam}
-RE-DIRECT EXAMINATION: ${reDirect}
-RE-CROSS EXAMINATION: (ATTORNEY NAME)
-(add more if questioning goes further)
-
-CERTIFIED QUESTIONS?: ${certQuestions}
-
-TRANSCRIPT ORDER: ${transOrdered}
-IF ORDERED: 
-ORDER ON THE RECORD TIMESTAMP: ${orderTime}
-WHO ORDERED ORIGINAL? (O+1): ${originalOrder}
-DELIVERY SPEED: ${deliverySpeed}
-COPY ORDER(S): ${copyOrder}
-
-VIDEO ORDER: ${videoOrdered} - ${videoAttny}
-ORDER NOTES: (i.e. requests for physical copies or cost quotes)
-
-IF EXHIBITS WERE MARKED (MUST HAVE EXHIBIT LIST IN NOTES SECTION):
-ARE THE EXHIBITS BEING SENT TO TRANSCRIPTS@COURTSCIBES.COM? ${exhibitsSent}
-IF NOT, ATTORNEY NAME OF WHO RETAINED EXHIBITS: ${retainAttny}`
+${renderReadWaive(jobType, readWaive, contactRead, directExam, crossExam, 
+reDirect, certQuestions, transOrdered, orderTime, originalOrder, deliverySpeed, 
+copyOrder, videoOrdered, videoAttny, exhibitsSent, retainAttny)}
+`
 }
 
 export default generateTxtFile

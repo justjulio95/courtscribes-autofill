@@ -55,12 +55,14 @@ const promptReporter = () => {
       name: 'video',
       message: 'Is this a video job?',
       choices: ['Yes', 'No'],
+      when: (answers) => answers.jobType !== 'Hearing'
     },
     {
       type: 'list',
       name: 'idCheck',
       message: 'Have you checked the ID of the witness? (Select N/A if this is a HEARING)',
       choices: ['Yes', 'No', 'N/A'],
+      when: (answers) => answers.jobType !== 'Hearing'
     },
     {
       type: 'input',
