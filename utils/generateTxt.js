@@ -171,4 +171,5 @@ copyOrder, videoOrdered, videoAttny, exhibitsSent, retainAttny)}
 `
 }
 
-export default generateTxtFile
+// export default generateTxtFile
+module.exports = generateTxtFile;

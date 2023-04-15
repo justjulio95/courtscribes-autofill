@@ -1,5 +1,6 @@
-import docx from 'docx';
-import * as fs from 'fs';
+// import docx from 'docx';
+const docx = require('docx')
+const fs = require('fs')
 
 function renderExhibitsList(confirmExhibits, exhibits) {
   if (confirmExhibits === true) {
@@ -410,4 +411,5 @@ const generateRCF = courtScribesData => {
   })
 }
 
-export default generateRCF;
+// export default generateRCF;
+module.exports = generateRCF

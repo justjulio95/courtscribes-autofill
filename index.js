@@ -1,9 +1,12 @@
-import inquirer from 'inquirer';
-import fs from 'fs'
-import generateTxtFile from './utils/generateTxt.js';
-import generateRCF from './utils/generateRCF.js'
+const inquirer = require('inquirer')
+// import fs from 'fs';
+const fs = require('fs')
+// import generateTxtFile from './utils/generateTxt.js';
+const generateTxtFile = require('./utils/generateTxt')
+// import generateRCF from './utils/generateRCF.js'
+const generateRCF = require('./utils/generateRCF')
 const log = console.log;
-// throughout this code the WHEN function will be used to filter out some unnecessary questions.
+//throughout this code the WHEN function will be used to filter out some unnecessary questions.
 
 const promptReporter = () => {
   // a slew of initial questions for the forms that need to be filled out. 
