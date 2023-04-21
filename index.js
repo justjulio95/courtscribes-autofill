@@ -1,6 +1,8 @@
 const inquirer = require('inquirer')
 // import fs from 'fs';
 const fs = require('fs')
+const path = require('path')
+const desktop = path.join(require('os').homedir(), 'Desktop') // this finds the path to a desktop, regardless of operating system.
 // import generateTxtFile from './utils/generateTxt.js';
 const generateTxtFile = require('./utils/generateTxt')
 // import generateRCF from './utils/generateRCF.js'
@@ -316,7 +318,8 @@ promptReporter()
   return generateTxtFile(courtScribesData);
 })
 .then(data => {
-   fs.writeFile(`./${data.slice(10,15)}.txt`, data, err => {
-     if (err) throw Error(err)
+  fs.writeFile(path.join(desktop, `./${data.slice(10,15)}.txt`), data, err => {
+    if(err) throw Error(err)
+    log('Text file and RCF made successfully! Happy scribing!')
   })
 })

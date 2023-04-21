@@ -3,6 +3,7 @@ const docx = require('docx')
 const fs = require('fs')
 const path = require('path')
 const csHeader = path.join(__dirname, './images/CSHeader.jpeg')
+const desktop = path.join(require('os').homedir(), 'Desktop') // this finds the path to a desktop, regardless of operating system.
 
 function renderReadWaive(readWaive) {
   if (readWaive === undefined) return `N/A`
@@ -458,7 +459,7 @@ const generateRCF = courtScribesData => {
   })
 
   docx.Packer.toBuffer(doc).then((buffer) => {
-    fs.writeFileSync(`RCF_[${jobNumber}].docx`, buffer)
+    fs.writeFileSync(path.join(desktop, `RCF_[${jobNumber}].docx`), buffer)
   })
 }
 
