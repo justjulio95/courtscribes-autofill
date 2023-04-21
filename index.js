@@ -316,7 +316,7 @@ promptReporter()
   return generateTxtFile(courtScribesData);
 })
 .then(data => {
-   fs.writeFile(`./notepad.txt`, data, err => {
+   fs.writeFile(`./${data.slice(10,15)}.txt`, data, err => {
      if (err) throw Error(err)
   })
 })

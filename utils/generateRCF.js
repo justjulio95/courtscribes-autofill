@@ -1,8 +1,16 @@
 // import docx from 'docx';
 const docx = require('docx')
 const fs = require('fs')
+const path = require('path')
+const csHeader = path.join(__dirname, './images/CSHeader.jpeg')
 
-function renderExhibitsList(confirmExhibits, exhibits) {
+function renderReadWaive(readWaive) {
+  if (readWaive === undefined) return `N/A`
+
+  return `${readWaive}`
+}
+
+function renderExhibitsList(jobType, confirmExhibits, exhibits) {
   if (confirmExhibits === true) {
     let exhibitsList = exhibits.split(',').map(function(item){
       return item.trim();
@@ -14,13 +22,56 @@ function renderExhibitsList(confirmExhibits, exhibits) {
     }
 
     return `${tradList}`
+  } else if (confirmExhibits === undefined){
+    return '';
   }
+}
+
+function renderExhibitsSent(jobType, confirmExhibits, exhibitsSent) {
+  if (confirmExhibits === true && exhibitsSent === true) {
+    return `Yes`;
+  } else if (confirmExhibits === true && exhibitsSent === false){
+    return `No`
+  } else if (confirmExhibits === false || jobType === 'Hearing') {
+    return 'N/A'
+  }
+}
+
+function renderTranscriptOrder(jobType, transOrdered) {
+  if (jobType === 'Hearing') {
+    return `N/A`
+  } else if (jobType !== 'Hearing' && transOrdered === true) {
+    return 'Yes'
+  } else if (jobType !== 'Hearing' && transOrdered === false) {
+    return 'No'
+  }
+}
+
+function renderTranscriptDeliverySpeed(jobType, transOrdered, deliverySpeed) {
+  if (jobType === 'Hearing') {
+    return 'N/A'
+  } else if (jobType !== 'Hearing' && transOrdered === false) {
+    return `N/A`
+  } else if (jobType !== 'Hearing' && transOrdered === true) {
+    return `${deliverySpeed}`
+  }
+}
+
+function renderVideoOrdered(videoOrdered) {
+  if (videoOrdered === undefined) return `N/A`
+  if (videoOrdered === true) return `Yes`
+  if (videoOrdered === false) return `No`
+}
+
+function renderOriginalOrder(originalOrder){
+  if (originalOrder === undefined) return `N/A`
+  return `${originalOrder}`
 }
 
 // use the docx package to develop the RCF file
 const generateRCF = courtScribesData => {
   // destructure the object for the sake of simplicity in coding
-  const {reporterName, jobNumber, date, witness, caseName, caseNumber, onTime, offTime,
+  const {reporterName, jobType, jobNumber, date, witness, caseName, caseNumber, onTime, offTime,
   readWaive, transOrdered, originalOrder, deliverySpeed, videoOrdered, confirmExhibits, 
   exhibits, exhibitsSent} = courtScribesData;
 
@@ -32,7 +83,7 @@ const generateRCF = courtScribesData => {
           new docx.Paragraph({
             children: [
               new docx.ImageRun({
-                data: fs.readFileSync('utils/images/CSHeader.jpeg'),
+                data: fs.readFileSync(csHeader),
                 transformation: {
                   width: 300,
                   height: 100
@@ -163,7 +214,7 @@ const generateRCF = courtScribesData => {
             },
             children:[
               new docx.TextRun({
-                text: `READ or WAIVE: ${readWaive}`,
+                text: `READ or WAIVE: ${renderReadWaive(readWaive)}`,
                 color: 'FF0000',
                 bold: true,
                 size: 24,
@@ -219,7 +270,7 @@ const generateRCF = courtScribesData => {
             },
             children:[
               new docx.TextRun({
-                text: `READ or WAIVE: ${readWaive}`,
+                text: `READ or WAIVE: `,
                 color: '000000',
                 bold: true,
                 size: 24,
@@ -275,7 +326,7 @@ const generateRCF = courtScribesData => {
             },
             children:[
               new docx.TextRun({
-                text: `READ or WAIVE: ${readWaive}`,
+                text: `READ or WAIVE: `,
                 color: '000000',
                 bold: true,
                 size: 24,
@@ -289,7 +340,7 @@ const generateRCF = courtScribesData => {
             },
             children:[
               new docx.TextRun({
-                text: `EXHIBITS: ${renderExhibitsList(confirmExhibits, exhibits)}`,
+                text: `EXHIBITS: ${renderExhibitsList(jobType, confirmExhibits, exhibitsSent)}`,
                 color: 'FF0000',
                 bold: true,
                 size: 24,
@@ -303,7 +354,7 @@ const generateRCF = courtScribesData => {
             },
             children:[
               new docx.TextRun({
-                text: `EXHIBITS BEING SENT TO TRANSCRIPTS@COURTSCRIBES.COM: ${exhibitsSent}`,
+                text: `EXHIBITS BEING SENT TO TRANSCRIPTS@COURTSCRIBES.COM: ${renderExhibitsSent(jobType, confirmExhibits)}`,
                 color: 'FF0000',
                 bold: true,
                 size: 24,
@@ -317,7 +368,7 @@ const generateRCF = courtScribesData => {
             },
             children:[
               new docx.TextRun({
-                text: `TRANSCRIPT(S) ORDERED: ${transOrdered}`,
+                text: `TRANSCRIPT(S) ORDERED: ${renderTranscriptOrder(jobType, transOrdered)}`,
                 color: '00AA00',
                 bold: true,
                 size: 24,
@@ -331,7 +382,7 @@ const generateRCF = courtScribesData => {
             },
             children:[
               new docx.TextRun({
-                text: `DELIVERY SPEED: ${deliverySpeed}`,
+                text: `DELIVERY SPEED: ${renderTranscriptDeliverySpeed(jobType, transOrdered, deliverySpeed)}`,
                 color: '00AA00',
                 bold: true,
                 size: 24,
@@ -345,7 +396,7 @@ const generateRCF = courtScribesData => {
             },
             children:[
               new docx.TextRun({
-                text: `VIDEO ORDERED: ${videoOrdered}`,
+                text: `VIDEO ORDERED: ${renderVideoOrdered(videoOrdered)}`,
                 color: '00AA00',
                 bold: true,
                 size: 24,
@@ -359,7 +410,7 @@ const generateRCF = courtScribesData => {
             },
             children:[
               new docx.TextRun({
-                text: `NAMES OF ATTORNEY(S) WHO ORDERED: ${originalOrder}`,
+                text: `NAMES OF ATTORNEY(S) WHO ORDERED: ${renderOriginalOrder(originalOrder)}`,
                 color: '00AA00',
                 bold: true,
                 size: 24,
@@ -384,7 +435,7 @@ const generateRCF = courtScribesData => {
           new docx.Paragraph({
             children: [
               new docx.ImageRun({
-                data: fs.readFileSync('utils/images/CSHeader.jpeg'),
+                data: fs.readFileSync(csHeader),
                 transformation: {
                   width: 300,
                   height: 100
@@ -407,7 +458,7 @@ const generateRCF = courtScribesData => {
   })
 
   docx.Packer.toBuffer(doc).then((buffer) => {
-    fs.writeFileSync("Test_Doc.docx", buffer)
+    fs.writeFileSync(`RCF_[${jobNumber}].docx`, buffer)
   })
 }
 
